@@ -1,0 +1,113 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <form (ngSubmit)='save()' [formGroup]="loginForm">
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Customer Name</ion-label>
+            <ion-input type="text" formControlName="customerName" placeholder=""></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['customerName'].valid && 
+        loginForm.controls['customerName']?.touched"> Name is required *</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Guarantor Name</ion-label>
+            <ion-input type="text" formControlName="guarantorName" placeholder=""></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['guarantorName'].valid && 
+        loginForm.controls['guarantorName']?.touched"> Father/Husband name is required *</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Address</ion-label>
+            <ion-textarea type="text" formControlName="address" placeholder="Enter Address..."></ion-textarea>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['address'].valid && 
+        loginForm.controls['address']?.touched"> Address is required *</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Mobile No</ion-label>
+            <ion-input type="tel" formControlName="mobileNumber" placeholder="" minlength="10" maxlength="10"
+              (keydown)="validateNumber($event)"></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['mobileNumber'].valid && 
+        loginForm.controls['mobileNumber']?.touched"> Mobile number is required *</span>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Adhaar Number</ion-label>
+            <ion-input type="tel" formControlName="aadharNumber" placeholder="" minlength="12" maxlength="12"  (keydown)="validateNumber($event)"></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['aadharNumber'].valid && 
+        loginForm.controls['aadharNumber']?.touched"> Aadhar number is required *</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Referred By</ion-label>
+            <ion-input type="text" formControlName="referredBy" placeholder=""></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['referredBy'].valid && 
+          loginForm.controls['referredBy']?.touched"> Aadhar number is required *</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines=none>
+            <ion-label position="stacked">File Upload</ion-label>
+            <ion-input type="file" formControlName="fileUpload" accept="application/pdf" (change)="uploadcandidateFile($event)" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Created By</ion-label>
+            <ion-input type="text" formControlName="createdBy" placeholder=""></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['createdBy'].valid && 
+          loginForm.controls['createdBy']?.touched"> Select anyone user *</span>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Created Date</ion-label>
+            <ion-input type="text" formControlName="dateOfCreated" placeholder=""></ion-input>
+          </ion-item>
+          <!-- <span class="text-danger" *ngIf="!loginForm.controls['dateOfCreated'].valid && 
+          loginForm.controls['dateOfCreated']?.touched"> Name is required *</span> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Modified By</ion-label>
+            <ion-input type="text" formControlName="modifiedBy" placeholder=""></ion-input>
+          </ion-item>
+          <span class="text-danger" *ngIf="!loginForm.controls['modifiedBy'].valid && 
+          loginForm.controls['modifiedBy']?.touched"> Modified user is required *</span>
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Modified Date</ion-label>
+            <ion-input type="text" formControlName="dateOfModified" placeholder=""></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button class="saveButton" color="tertiary" type="submit" [disabled]="!thisFormValid()">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

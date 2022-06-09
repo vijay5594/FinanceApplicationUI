@@ -1,0 +1,114 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <form (ngSubmit)='addProduct()' [formGroup]="productForm">
+
+    <ion-row>
+      <!-- <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Product Id</ion-label>
+          <ion-input type="text" formControlName="productId" placeholder=""></ion-input>
+        </ion-item> -->
+        <!-- <span class="text-danger" *ngIf="!productForm.controls['productId'].valid && 
+        productForm.controls['productId']?.touched"> Name is required *</span> -->
+      <!-- </ion-col> -->   
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Product Name</ion-label>
+          <ion-input type="text" formControlName="productName" placeholder=""></ion-input>
+        </ion-item>
+        <span class="text-danger" *ngIf="!productForm.controls['productName'].valid && 
+        productForm.controls['productName']?.touched">Product name is required *</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Product Type</ion-label>
+          <ion-input type="text" formControlName="productType" placeholder=""></ion-input>
+        </ion-item>
+        <span class="text-danger" *ngIf="!productForm.controls['productType'].valid && 
+        productForm.controls['productType']?.touched"> Father/Husband name is required *</span>
+      </ion-col>
+          <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Product Tenure</ion-label>
+          <ion-input type="number"  formControlName="productTenure" placeholder="productTenure"></ion-input>
+        </ion-item>
+        <span class="text-danger" *ngIf="!productForm.controls['productTenure'].valid && 
+        productForm.controls['productTenure']?.touched"> Tenure is required *</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">No Of Customers</ion-label>
+          <ion-input type="number" formControlName="numberOfCustomers" placeholder="Quantity"   ></ion-input>
+        </ion-item>
+        <span class="text-danger" *ngIf="!productForm.controls['numberOfCustomers'].valid && 
+        productForm.controls['numberOfCustomers']?.touched"> Quantity is required *</span>
+     </ion-col>
+     </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Description</ion-label>
+          <ion-input type="text" formControlName="productDescription" placeholder=""></ion-input>
+        </ion-item>
+        <span class="text-danger" *ngIf="!productForm.controls['productDescription'].valid && 
+        productForm.controls['productDescription']?.touched"> Description is required *</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Created By</ion-label>
+        <ion-input type="text" formControlName="createdBy" placeholder=""></ion-input>
+      </ion-item>
+      <span class="text-danger" *ngIf="!productForm.controls['createdBy'].valid && 
+      productForm.controls['createdBy']?.touched"> Select anyone user *</span>
+    </ion-col>
+      <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Created Date</ion-label>
+        <ion-input type="text" formControlName="dateOfCreated" placeholder=""></ion-input>
+      </ion-item>
+      <!-- <span class="text-danger" *ngIf="!loginForm.controls['dateOfCreated'].valid && 
+      loginForm.controls['dateOfCreated']?.touched"> Name is required *</span> -->
+    </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Modified By</ion-label>
+        <ion-input type="text" formControlName="modifiedBy" placeholder=""></ion-input>
+      </ion-item>
+      <span class="text-danger" *ngIf="!productForm.controls['modifiedBy'].valid && 
+      productForm.controls['modifiedBy']?.touched"> Modified user is required *</span>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Modified Date</ion-label>
+        <ion-input type="text" formControlName="dateOfModified" placeholder=""></ion-input>
+      </ion-item>
+    </ion-col>
+    </ion-row>   
+      <!-- <span class="text-danger" *ngIf="!loginForm.controls['dateOfModified'].valid && 
+      loginForm.controls['dateOfModified']?.touched"> Name is required *</span> -->
+    <!-- </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Is Active</ion-label>
+          <ion-input type="text" formControlName="isActive" placeholder=""></ion-input>
+        </ion-item>        
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col>
+        <ion-button class="saveButton" color="tertiary" type="submit" [disabled]="!thisFormValid()">Save</ion-button>       
+      </ion-col>
+    </ion-row>    
+    </form>
+  </ion-grid>
+</ion-content>
