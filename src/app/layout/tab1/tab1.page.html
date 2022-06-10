@@ -51,7 +51,7 @@
               {{ item.productTenure }}
           </ion-col>
           <ion-col size="1">
-              {{ item.noOfCustomers }}
+              {{ item.numberOfCustomers }}
           </ion-col>
           <ion-col size="1">
               {{ item.price }}
@@ -125,13 +125,12 @@
                           <ion-col>
                               <ion-item lines="none">
                                   <ion-label position="stacked">Quantity</ion-label>
-                                  <ion-input type="number" [disabled]="isDisabled" [(ngModel)]="item.noOfCustomers"
-                                      formControlName="noOfCustomers" placeholder="" 
-                                      (keydown)="validateNumber($event)">
+                                  <ion-input type="number" [disabled]="isDisabled" [(ngModel)]="item.numberOfCustomers"
+                                      formControlName="numberOfCustomers" placeholder="" (keydown)="validateNumber($event)">
                                   </ion-input>
                               </ion-item>
-                              <span class="text-danger" *ngIf="!updateForm.controls['noOfCustomers'].valid && 
-                              updateForm.controls['noOfCustomers']?.touched"> Mobile number is required *</span>
+                              <span class="text-danger" *ngIf="!updateForm.controls['numberOfCustomers'].valid && 
+                              updateForm.controls['numberOfCustomers']?.touched"> Mobile number is required *</span>
                           </ion-col>
                           <ion-col>
                               <ion-item lines="none">

@@ -31,7 +31,7 @@ export class Tab4Page {
 
   generateLoginForm = () => {
     this.productForm = this.fb.group({
-      productId:[''],
+      //productId:[''],
       productName: ['', Validators.required],
       productType: ['', Validators.required],
       productTenure: ['', Validators.required],

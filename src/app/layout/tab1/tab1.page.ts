@@ -35,9 +35,9 @@ export class Tab1Page implements OnInit {
     this.updateForm= this.fb.group({
       productId:[''],
       productName: ['', Validators.required],
-      productType: ['', Validators.required],
-      noOfCustomers: ['', Validators.required],
+      productType: ['', Validators.required],    
       productTenure: ['', Validators.required],
+      numberOfCustomers: ['', Validators.required],
       price:['', Validators.required],
     })
     this.apiService.getProductDetails().subscribe(data => {
