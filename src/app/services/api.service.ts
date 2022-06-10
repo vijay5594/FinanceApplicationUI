@@ -51,10 +51,10 @@ export class ApiService {
   //   const url = this.getUserApiUrl('Allproducts')
   //   return this.http.get(url);
   // }
-  insertEntity = (params: any): Observable<any> => {
-    const url = this.getUserApiUrl('AddNewProduct');
-    return this.http.post(url, params);
-  }
+  // insertEntity = (params: any): Observable<any> => {
+  //   const url = this.getUserApiUrl('AddNewProduct');
+  //   return this.http.post(url, params);
+  // }
 
   insertProduct = (params: any): Observable<any> => {
     const url = this.getUserApiUrl('AddNewProduct');

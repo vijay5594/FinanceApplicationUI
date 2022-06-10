@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   generateLoginForm = () => {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
-      workStation: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
 

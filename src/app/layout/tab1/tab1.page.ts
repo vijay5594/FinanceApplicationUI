@@ -16,12 +16,7 @@ export class Tab1Page implements OnInit {
 
 
   productDetails: any;
-  // constructor(private toast: NotificationService,
-  //   private loadingService: LoadingService, private router: Router,
-  //   private apiService: ApiService,
-  //   public userService: UserService) {
-
-  // }
+  
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -31,7 +26,7 @@ export class Tab1Page implements OnInit {
     private fb: FormBuilder) {
     this.generateDetails();
   }
-  _data: any
+
  
   isDisabled: boolean=true;
 
@@ -40,24 +35,17 @@ export class Tab1Page implements OnInit {
     this.updateForm= this.fb.group({
       productId:[''],
       productName: ['', Validators.required],
-      // guarantorName: ['', Validators.required],
-      // address: ['', Validators.required],
-      // mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      // aadharNumber: ['', Validators.required],
-      // referredBy: ['', Validators.required],
-      // fileUpload: [''],
-      // createdBy: ['', Validators.required],
-      // dateOfCreated: [moment().format()],
-      // modifiedBy: ['', Validators.required],
-      // dateOfModified: [moment().format()]
-
+      productType: ['', Validators.required],
+      noOfCustomers: ['', Validators.required],
+      productTenure: ['', Validators.required],
+      price:['', Validators.required],
     })
-  
-  this.apiService.getProductDetails().subscribe(data => {
-    this._data = data;
-    console.log(this._data);
-  });
-}
+    this.apiService.getProductDetails().subscribe(data => {
+      this.productDetails = data;
+      console.log(this.productDetails);
+    });
+  }
+
     updateForm:FormGroup
   ngOnInit(): void {
     this.getDetails();
@@ -87,5 +75,11 @@ export class Tab1Page implements OnInit {
   }
   changeStatus(){
     this.isDisabled = !(this.isDisabled);
+  }
+  validateNumber(e) {
+    const keyCode = e.keyCode;  
+		if (( (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode !=8) {
+			e.preventDefault();
+    }
   }
 }

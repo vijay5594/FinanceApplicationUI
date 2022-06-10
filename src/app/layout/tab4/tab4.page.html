@@ -32,7 +32,7 @@
           <ion-col>
         <ion-item lines="none">
           <ion-label position="stacked">Product Tenure</ion-label>
-          <ion-input type="number"  formControlName="productTenure" placeholder="productTenure"></ion-input>
+          <ion-input type="number" maxlength="2" formControlName="productTenure" placeholder="productTenure"></ion-input>
         </ion-item>
         <span class="text-danger" *ngIf="!productForm.controls['productTenure'].valid && 
         productForm.controls['productTenure']?.touched"> Tenure is required *</span>
@@ -41,12 +41,20 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none">
-          <ion-label position="stacked">No Of Customers</ion-label>
+          <ion-label position="stacked">Quantity</ion-label>
           <ion-input type="number" formControlName="numberOfCustomers" placeholder="Quantity"   ></ion-input>
         </ion-item>
         <span class="text-danger" *ngIf="!productForm.controls['numberOfCustomers'].valid && 
         productForm.controls['numberOfCustomers']?.touched"> Quantity is required *</span>
      </ion-col>
+     <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Price</ion-label>
+        <ion-input type="number" formControlName="price" placeholder=""   ></ion-input>
+      </ion-item>
+      <span class="text-danger" *ngIf="!productForm.controls['price'].valid && 
+      productForm.controls['price']?.touched"> Quantity is required *</span>
+   </ion-col>
      </ion-row>
     <ion-row>
       <ion-col>
