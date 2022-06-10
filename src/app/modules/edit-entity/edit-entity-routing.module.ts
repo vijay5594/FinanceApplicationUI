@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+// import { NgModule } from '@angular/core';
+// import { Routes, RouterModule } from '@angular/router';
 
-import { EditEntityPage } from './edit-entity.page';
+// import { EditEntityPage } from './edit-entity.page';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: EditEntityPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: EditEntityPage
+//   }
+// ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class EditEntityPageRoutingModule {}
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class EditEntityPageRoutingModule {}

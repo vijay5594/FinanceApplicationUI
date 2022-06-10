@@ -7,18 +7,17 @@
     <img slot='start' src='../../../assets/icon/favicon.png' />
     
 
-    <form (ngSubmit)='doLogin()' [formGroup]='loginForm' padding>
+    <form (ngSubmit)="doLogin()" [formGroup]="loginForm">
 
-      <ion-input required type='text' placeholder='Username' name='username' formControlName='userName'>
-        <ion-icon name='person-outline'></ion-icon>
+      <ion-input formControlName="username" required type='text' placeholder='Username' >
+        <ion-icon name='person-sharp'></ion-icon>
       </ion-input>
 
-      <ion-input style="margin-top: 1rem" required type='password' placeholder='Password' name='username'
-        formControlName='userName'>
-        <ion-icon name='desktop-outline'></ion-icon>
+      <ion-input style="margin-block-start: 1rem" formControlName="password"  placeholder='Password'>
+        <ion-icon name='lock-closed-sharp'></ion-icon>
       </ion-input>
-      <div style="margin-top: 1rem; float:right">
-        <ion-button type="submit">Login</ion-button>
+      <div style="margin-block-start: 1rem; float:inline-end">
+        <ion-button type="submit" >Login</ion-button>
       </div>
 
 

@@ -27,13 +27,10 @@
           <ion-col size="1">
               Price
           </ion-col>
-         
-          <ion-col size="0.6">
-              Delete
-          </ion-col>
+        
       </ion-row>
   </ion-card>
-  <ion-card *ngFor="let item of productDetails; let i = index" id="trigger-button{{i}}">
+  <ion-card *ngFor="let item of productDetails; let i = index" id="trigger-button{{i}}" class="selectable">
       <ion-row class="header">
           <ion-col size=".5">
               {{ i + 1 }}
@@ -56,12 +53,7 @@
           <ion-col size="1">
               {{ item.price }}
           </ion-col>
-          <ion-col size="0.6">
-              <ion-button id="trigger-button{{i}}" (click)="deleteProduct(item.productId)" color="danger"
-                  size="small" fill="outline">
-                  <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-          </ion-col>
+          
       </ion-row>
   </ion-card>
   <div *ngFor="let item of productDetails; let i = index;">
@@ -77,6 +69,12 @@
                                   <ion-icon name="color-wand-outline"></ion-icon>
                               </ion-button>
                           </ion-col>
+                          <ion-col >
+                            <ion-button  (click)="deleteProduct(item.productId)" color="danger"
+                                size="small" fill="outline">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
                       </ion-row>
                       <ion-row>
                           <ion-col>

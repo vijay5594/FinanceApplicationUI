@@ -13,6 +13,7 @@ export class ApiService {
   private ProductApi = 'Product';
   private FileApi = 'Fileupload';
   private CustomerApi = 'Customer';
+  private LoginApi='Login';
 
   constructor(private http: HttpClient) {
 
@@ -22,11 +23,14 @@ export class ApiService {
     return `${environment.baseURL}/${this.CustomerApi}/${endpoint}`;
   }
 
-  getProductApiUrl = (endpoint: string) => {
-    return `${environment.baseURL}/${this.ProductQualityApi}/${endpoint}`;
-  }
+  // getProductApiUrl = (endpoint: string) => {
+  //   return `${environment.baseURL}/${this.ProductQualityApi}/${endpoint}`;
+  // }
   FileApiUrl = (endpoint: string) => {
     return `${environment.baseURL}/${this.FileApi}/${endpoint}`;
+  }
+  LoginApiUrl = (endpoint: string) => {
+    return `${environment.baseURL}/${this.LoginApi}/${endpoint}`;
   }
 
 
@@ -65,7 +69,7 @@ export class ApiService {
     return this.http.put(url, params);
   } 
   deleteProduct = (params: number): Observable<any> => {
-    const url = this.getCustomerApiUrl('DeleteProduct?productId=');
+    const url = this.getUserApiUrl('DeleteProduct?productId=');
     return this.http.delete(url + params);
   }
 
@@ -79,7 +83,7 @@ export class ApiService {
 
 
   doLogin = (params: any): Observable<any> => {
-    const url = this.getUserApiUrl('login');
+    const url = this.LoginApiUrl('Login');
     return this.http.post(url, params);
   }
 
@@ -98,61 +102,61 @@ export class ApiService {
     return this.http.delete(url + params);
   }
 
+}
 
+  // logout = () => {
+  //   localStorage.removeItem('userId');
+  //   localStorage.removeItem('isSuperUser');
+  //   localStorage.removeItem('workStation');
+  // }
 
-  logout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('isSuperUser');
-    localStorage.removeItem('workStation');
-  }
-
-  // insertEntity = (params: any): Observable<any> => {
+  // // insertEntity = (params: any): Observable<any> => {
   //   const url = this.getProductApiUrl('AddNewProduct');
   //   return this.http.post(url, params);
   // }
 
-  updateEntity = (params: any): Observable<any> => {
-    const url = this.getProductApiUrl('Update');
-    return this.http.post(url, params);
-  }
+//   updateEntity = (params: any): Observable<any> => {
+//     const url = this.getProductApiUrl('Update');
+//     return this.http.post(url, params);
+//   }
 
-  loadRecentSerialNo = (user: string): Observable<any> => {
-    const endpoint = `GetMaxCount?user=${user}`;
-    const url = this.getProductApiUrl(endpoint);
-    return this.http.get(url);
-  }
+//   loadRecentSerialNo = (user: string): Observable<any> => {
+//     const endpoint = `GetMaxCount?user=${user}`;
+//     const url = this.getProductApiUrl(endpoint);
+//     return this.http.get(url);
+//   }
 
-  loadAllEntity = (params: any): Observable<Array<any>> => {
-    const url = this.getProductApiUrl('FilteredItems');
-    return this.http.post<Array<any>>(url, params);
-  }
+//   loadAllEntity = (params: any): Observable<Array<any>> => {
+//     const url = this.getProductApiUrl('FilteredItems');
+//     return this.http.post<Array<any>>(url, params);
+//   }
 
-  loadAllPREntity = (params: any): Observable<Array<any>> => {
-    const url = this.getProductApiUrl('GetPassingRate');
-    return this.http.post<Array<any>>(url, params);
-  }
+//   loadAllPREntity = (params: any): Observable<Array<any>> => {
+//     const url = this.getProductApiUrl('GetPassingRate');
+//     return this.http.post<Array<any>>(url, params);
+//   }
 
-  getExcelReport = (params: any): Observable<HttpResponse<ArrayBuffer>> => {
-    const url = this.getProductApiUrl('GenerateExcel');
-    return this.http.post(url, params, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/octet-stream',
-        'Accept': 'application/octet-stream',
-      }),
-      observe: 'response',
-      responseType: 'arraybuffer'
-    });
-  }
+//   getExcelReport = (params: any): Observable<HttpResponse<ArrayBuffer>> => {
+//     const url = this.getProductApiUrl('GenerateExcel');
+//     return this.http.post(url, params, {
+//       headers: new HttpHeaders({
+//         'Content-Type': 'application/octet-stream',
+//         'Accept': 'application/octet-stream',
+//       }),
+//       observe: 'response',
+//       responseType: 'arraybuffer'
+//     });
+//   }
 
-  getPassingRateExcelReport = (params: any): Observable<HttpResponse<ArrayBuffer>> => {
-    const url = this.getProductApiUrl('GetPassingRateExcel');
-    return this.http.post(url, params, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/octet-stream',
-        'Accept': 'application/octet-stream',
-      }),
-      observe: 'response',
-      responseType: 'arraybuffer'
-    });
-  }
-}
+//   getPassingRateExcelReport = (params: any): Observable<HttpResponse<ArrayBuffer>> => {
+//     const url = this.getProductApiUrl('GetPassingRateExcel');
+//     return this.http.post(url, params, {
+//       headers: new HttpHeaders({
+//         'Content-Type': 'application/octet-stream',
+//         'Accept': 'application/octet-stream',
+//       }),
+//       observe: 'response',
+//       responseType: 'arraybuffer'
+//     });
+//   }
+// }

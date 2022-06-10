@@ -10,62 +10,63 @@ export class UserService {
   private _workStation: string = null;
 
   constructor() {
-    this.load();
+    // this.load();
   }
 
-  load = () => {
-    if (this.isValid()) {
-      const user = localStorage.getItem('userId');
-      if (user) {
-        this._user = user;
-      }
+  // load = () => {
+  //   if (this.isValid()) {
+  //     const user = localStorage.getItem('userId');
+  //     if (user) {
+  //       this._user = user;
+  //     }
 
-      const iSuperUser = localStorage.getItem('isSuperUser');
-      if (iSuperUser) {
-        this._isSuperUser = iSuperUser === 'true';
-      }
+  //     const iSuperUser = localStorage.getItem('isSuperUser');
+  //     if (iSuperUser) {
+  //       this._isSuperUser = iSuperUser === 'true';
+  //     }
 
-      const workStation = localStorage.getItem('workStation');
-      if (workStation) {
-        this._workStation = workStation;
-      }
-    }
-  }
+  //     const workStation = localStorage.getItem('workStation');
+  //     if (workStation) {
+  //       this._workStation = workStation;
+  //     }
+  //   }
+  // }
 
   isValid = () => {
-    const user = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
 
-    if (!user) {
+    if (!username && !password) {
       return false;
     }
 
     return true;
   }
-
-  get User(): string {
-    return this._user;
-  }
-
-  set User(user: string) {
-    localStorage.setItem('userId', user);
-    this._user = user;
-  }
-
-  get IsSuperUser(): boolean {
-    return this._isSuperUser;
-  }
-
-  set IsSuperUser(flag: boolean) {
-    localStorage.setItem('isSuperUser', flag + '');
-    this._isSuperUser = flag;
-  }
-
-  get WorkStation(): string {
-    return this._workStation;
-  }
-
-  set WorkStation(workStation: string) {
-    localStorage.setItem('workStation', workStation);
-    this._workStation = workStation;
-  }
 }
+  // get User(): string {
+  //   return this._user;
+  // }
+
+  // set User(user: string) {
+  //   localStorage.setItem('userId', user);
+  //   this._user = user;
+  // }
+
+  // get IsSuperUser(): boolean {
+  //   return this._isSuperUser;
+  // }
+
+  // set IsSuperUser(flag: boolean) {
+  //   localStorage.setItem('isSuperUser', flag + '');
+  //   this._isSuperUser = flag;
+  // }
+
+//   get WorkStation(): string {
+//     return this._workStation;
+//   }
+
+//   set WorkStation(workStation: string) {
+//     localStorage.setItem('workStation', workStation);
+//     this._workStation = workStation;
+//   }
+// }
