@@ -83,7 +83,7 @@ export class ApiService {
 
 
   doLogin = (params: any): Observable<any> => {
-    const url = this.LoginApiUrl('Login');
+    const url = this.LoginApiUrl('GetLogin');
     return this.http.post(url, params);
   }
 

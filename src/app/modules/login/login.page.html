@@ -7,7 +7,7 @@
     <img slot='start' src='../../../assets/icon/favicon.png' />
     
 
-    <form (ngSubmit)="doLogin()" [formGroup]="loginForm">
+    <form  [formGroup]="loginForm">
 
       <ion-input formControlName="username" required type='text' placeholder='Username' >
         <ion-icon name='person-sharp'></ion-icon>
@@ -17,7 +17,7 @@
         <ion-icon name='lock-closed-sharp'></ion-icon>
       </ion-input>
       <div style="margin-block-start: 1rem; float:inline-end">
-        <ion-button type="submit" >Login</ion-button>
+        <ion-button (click)="doLogin()" type="submit" >Login</ion-button>
       </div>
 
 
