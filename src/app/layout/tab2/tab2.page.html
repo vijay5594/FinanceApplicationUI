@@ -1,4 +1,36 @@
 <ion-content class="ion-padding">
+    <ion-button id="triggerbutton">Add New User
+
+    </ion-button>
+    <ion-modal trigger="triggerbutton">
+
+        <ng-template>
+            <ion-grid>
+
+                <form (ngSubmit)="signup()" [formGroup]="signupForm">
+                    <ion-input type="text" required type='text' formControlName="userName" placeholder='Username'>
+                        <ion-icon name='person-sharp'></ion-icon>
+                    </ion-input>
+                    <ion-input type="password" style="margin-block-start: 1rem" formControlName="password" placeholder='Password'>
+                        <ion-icon name='lock-closed-sharp'></ion-icon>
+                    </ion-input>
+                    <ion-item>
+                        <ion-icon name="people-sharp" size="small"></ion-icon>
+                        <ion-select placeholder="Select One" formControlName="role">
+                    
+                            <ion-select-option value="Admin">Admin</ion-select-option>
+                            <ion-select-option value="operator">operator</ion-select-option>
+                        </ion-select>
+                        </ion-item>
+                    <div style="margin-block-start: 1rem; float:inline-end">
+                        <ion-button type="submit" >Add</ion-button>
+                    </div>
+                </form>
+            </ion-grid>
+        </ng-template>
+
+    </ion-modal>
+
     <h2>Customer Details</h2>
     <ion-card>
         <ion-row style="font-weight: bold;" class="header">
@@ -36,7 +68,7 @@
             <ion-col size="0.9">
                 Referred By
             </ion-col>
-         
+
         </ion-row>
     </ion-card>
     <ion-card *ngFor="let item of _data; let i = index" id="trigger-button{{i}}">
@@ -79,7 +111,7 @@
                     <ion-icon name="color-wand-outline"></ion-icon>
                 </ion-button>
             </ion-col> -->
-           
+
         </ion-row>
     </ion-card>
     <div *ngFor="let item of _data; let i = index;">
@@ -90,14 +122,14 @@
                     <form [formGroup]="updateForm">
                         <ion-row>
                             <ion-col>
-                                <ion-button id="trigger-button{{i}}" (click)="changeStatus()"
-                                    size="small" fill="outline">
+                                <ion-button id="trigger-button{{i}}" (click)="changeStatus()" size="small"
+                                    fill="outline">
                                     <ion-icon name="color-wand-outline"></ion-icon>
                                 </ion-button>
                             </ion-col>
                             <ion-col>
-                                <ion-button id="trigger-button{{i}}"  (click)="deleteCustomer(item.customerId)" color="danger"
-                                    size="small" fill="outline">
+                                <ion-button id="trigger-button{{i}}" (click)="deleteCustomer(item.customerId)"
+                                    color="danger" size="small" fill="outline">
                                     <ion-icon name="trash-outline"></ion-icon>
                                 </ion-button>
                             </ion-col>
@@ -108,16 +140,16 @@
                                     <ion-label position="stacked">Customer Id</ion-label>
                                     <ion-input type="text" disabled [(ngModel)]="item.customerId"
                                         formControlName="customerId" placeholder=""></ion-input>
-                                    
+
                                 </ion-item>
 
                             </ion-col>
                             <ion-col>
                                 <ion-item lines="none">
                                     <ion-label position="stacked">Customer Name</ion-label>
-                                    <ion-input type="text"  [disabled]="isDisabled"[(ngModel)]="item.customerName"
+                                    <ion-input type="text" [disabled]="isDisabled" [(ngModel)]="item.customerName"
                                         formControlName="customerName" placeholder=""></ion-input>
-                                       
+
                                 </ion-item>
                                 <span class="text-danger" *ngIf="!updateForm.controls['customerName'].valid && 
                                 updateForm.controls['customerName']?.touched"> Name is required *</span>
@@ -212,7 +244,7 @@
                             </ion-col>
                         </ion-row>
                         <ion-row>
-                           
+
                             <ion-col>
                                 <ion-button class="saveButton" color="tertiary" type="submit" [disabled]="isDisabled"
                                     (click)="updateCustomer()">Save</ion-button>

@@ -24,7 +24,11 @@ export class Tab2Page {
     private userService: UserService,
     private fb: FormBuilder) {
     this.generateDetails();
+    this.generateSignupForm();
   }
+  
+
+  
   _data: any
  
   isDisabled: boolean=true;
@@ -46,8 +50,14 @@ export class Tab2Page {
       dateOfModified: [moment().format()]
 
     })
+  }
 
-
+    generateSignupForm = () => {
+      this.signupForm = this.fb.group({
+        userName: [''],
+        password: [''],
+        role: ['']
+      });
     this.apiService.getCustomerDetails().subscribe(data => {
       this._data = data;
       console.log(this._data);
@@ -56,6 +66,14 @@ export class Tab2Page {
 
 
 updateForm:FormGroup
+signupForm:FormGroup
+signup() {
+  console.log(this.signupForm.value, 'form values')
+  this.apiService.addUser(this.signupForm.value).subscribe(data => {
+    console.log(data);
+    
+  });
+}
 
   updateCustomer() {
     
