@@ -22,7 +22,15 @@ const routes: Routes = [
       {
         path: 'tab4',
         loadChildren: () => import('../tab4/tab4.module').then(m => m.Tab4PageModule)
+      
       },
+      {
+        path: 'payment',
+        loadChildren: () => import('../payment/payment.module').then(m => m.PaymentPageModule)
+      
+      },
+      
+      
       {
         path: '',
         redirectTo: '/tabs/tab1',

@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { LoadingService } from '../../services/loading.service';
 import { UserService } from 'src/app/services/user.service';
-import { FormBuilder, FormControl, FormControlName, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -15,8 +15,8 @@ import * as moment from 'moment';
 })
 export class Tab2Page {
 
-
   constructor(public modalController: ModalController,
+    public notificationService: NotificationService,
     private router: Router,
     private apiService: ApiService,
     private toast: NotificationService,
@@ -25,18 +25,19 @@ export class Tab2Page {
     private fb: FormBuilder) {
     this.generateDetails();
     this.generateSignupForm();
+    this.generateCustomerForm();
   }
-  
-
-  
   _data: any
- 
-  isDisabled: boolean=true;
+  isDisabled: boolean = true;
+  updateForm: FormGroup
+  signupForm: FormGroup
+  customerForm: FormGroup
+  currentUser: string = localStorage.getItem('userName')
+  superUser: string = localStorage.getItem('isSuperUser')
+  role: string = localStorage.getItem('Role')
 
-  generateDetails() {
-
-    this.updateForm= this.fb.group({
-      customerId:[''],
+  generateCustomerForm = () => {
+    this.customerForm = this.fb.group({
       customerName: ['', Validators.required],
       guarantorName: ['', Validators.required],
       address: ['', Validators.required],
@@ -44,42 +45,50 @@ export class Tab2Page {
       aadharNumber: ['', Validators.required],
       referredBy: ['', Validators.required],
       fileUpload: [''],
-      createdBy: ['', Validators.required],
-      dateOfCreated: [moment().format()],
-      modifiedBy: ['', Validators.required],
+      createdBy:[this.currentUser],
+      dateOfCreated: [moment().format()]
+
+    });
+  }
+  generateSignupForm = () => {
+    this.signupForm = this.fb.group({
+      userName: [''],
+      password: [''],
+      role: ['']
+    });
+  }
+  generateDetails = () => {
+    this.updateForm = this.fb.group({
+      customerId: [''],
+      customerName: ['', Validators.required],
+      guarantorName: ['', Validators.required],
+      address: ['', Validators.required],
+      mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      aadharNumber: ['', Validators.required],
+      referredBy: ['', Validators.required],
+      fileUpload: [''],
+      createdBy: [''],
+      dateOfCreated: [''],
+      modifiedBy: [this.currentUser],
       dateOfModified: [moment().format()]
 
-    })
-  }
-
-    generateSignupForm = () => {
-      this.signupForm = this.fb.group({
-        userName: [''],
-        password: [''],
-        role: ['']
-      });
+    });
     this.apiService.getCustomerDetails().subscribe(data => {
       this._data = data;
       console.log(this._data);
     });
   }
-
-
-updateForm:FormGroup
-signupForm:FormGroup
-signup() {
-  console.log(this.signupForm.value, 'form values')
-  this.apiService.addUser(this.signupForm.value).subscribe(data => {
-    console.log(data);
-    
-  });
-}
-
+  signup() {
+    console.log(this.signupForm.value, 'form values')
+    this.apiService.addUser(this.signupForm.value).subscribe(data => {
+      console.log(data);
+    });
+  }
   updateCustomer() {
-    
     this.apiService.updateCustomer(this.updateForm.value).subscribe(data => {
       console.log(data);
-      this.isDisabled=true;
+      this.isDisabled = true;
+      this.modalController.dismiss();
     });
   }
   deleteCustomer(params: any) {
@@ -89,35 +98,39 @@ signup() {
     });
   }
   validateNumber(e) {
-    const keyCode = e.keyCode;  
-		if (( (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode !=8) {
-			e.preventDefault();
+    const keyCode = e.keyCode;
+    if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8) {
+      e.preventDefault();
     }
   }
-  // thisFormValid() {
-  //   if (this.updateForm.valid) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
-  changeStatus(){
-    this.isDisabled = !(this.isDisabled);
+  thisFormValid() {
+    if (this.customerForm.valid) {
+      return true
+    } else {
+      return false
+    }
   }
-  
-  uploadcandidateFile = (fileChangeEvent: any) => {
-    console.log(fileChangeEvent,'geetha')
-    const photo = fileChangeEvent.target.files[0];
-    console.log(photo,'geetha')
-
-    const formData = new FormData();
-    console.log(formData,'geetha')
-
-    formData.append('file', photo);
-    this.apiService.fileUpload(formData).subscribe((file:any)=>{
-      console.log(file, 'file')
-
+  save() {
+    console.log(this.customerForm.value, 'form values')
+    this.apiService.insertCustomer(this.customerForm.value).subscribe(data => {
+      this.notificationService.success('Customer details saved successfully')
+      this.modalController.dismiss();
+      console.log(data);
+      this.generateDetails();
     });
   }
-
+  changeStatus() {
+    this.isDisabled = !(this.isDisabled);
+  }
+  uploadcandidateFile = (fileChangeEvent: any) => {
+    console.log(fileChangeEvent, 'geetha')
+    const photo = fileChangeEvent.target.files[0];
+    console.log(photo, 'geetha')
+    const formData = new FormData();
+    console.log(formData, 'geetha')
+    formData.append('file', photo);
+    this.apiService.fileUpload(formData).subscribe((file: any) => {
+      console.log(file, 'file')
+    });
+  }
 }

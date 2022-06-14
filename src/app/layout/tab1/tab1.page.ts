@@ -57,8 +57,8 @@ export class Tab1Page implements OnInit {
       console.log(this.productDetails, 'data')
     })
   }
-  onClickAdd() {
-    this.router.navigate(['/tabs/tab4']);
+  onClickAdd(params:any) {
+    this.router.navigate(['/tabs/tab2']);
   }
   updateProduct() {
     

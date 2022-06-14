@@ -1,4 +1,135 @@
 <ion-content class="ion-padding">
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let item of productDetails; let i = index" size="3">
+                <ion-card style="padding: 0.5rem;">
+                    <ion-row>
+                        <ion-col>
+                            <ion-badge style="float: right;"  (click)="deleteProduct(item.productId)" color="danger">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </ion-badge>
+                        </ion-col>
+                    </ion-row>
+                    <ion-card-subtitle style="padding:0.5rem">
+                        <h4 style="color: #7433bf;font-weight: 600;"> {{ item.productName }}</h4>
+                        {{ item.productType}}
+                        <br />
+                        {{ item.productDescription }}
+                        <br />
+                        {{ item.dateOfCreated }}
+                    </ion-card-subtitle>
+                    <ion-row>
+                        <ion-col>
+                            <ion-badge id="trigger-button{{i}}">view</ion-badge>
+                        </ion-col>
+                        <ion-col>
+                            <ion-badge color="tertiary" style="float: right;" (click)="onClickAdd(i)">
+                                <ion-icon name="person-add-outline" ></ion-icon>
+                            </ion-badge>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div >
+        <ion-modal  *ngFor="let item of productDetails; let i = index;"trigger="trigger-button{{i}}">
+            <ng-template>
+                <ion-grid>
+  
+                    <form [formGroup]="updateForm">
+                        <ion-row>
+                            <ion-col>
+                                <ion-button id="trigger-button{{i}}" (click)="changeStatus()"
+                                    size="small" fill="outline">
+                                    <ion-icon name="color-wand-outline"></ion-icon>
+                                </ion-button>
+                            </ion-col>
+                           
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Product Id</ion-label>
+                                    <ion-input type="text" disabled [(ngModel)]="item.productId"
+                                        formControlName="productId" placeholder=""></ion-input>
+                                    
+                                </ion-item>
+  
+                            </ion-col>
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Product Name</ion-label>
+                                    <ion-input type="text"  [disabled]="isDisabled"[(ngModel)]="item.productName"
+                                        formControlName="productName" placeholder=""></ion-input>
+                                       
+                                </ion-item>
+                                <span class="text-danger" *ngIf="!updateForm.controls['productName'].valid && 
+                                updateForm.controls['productName']?.touched"> Name is required *</span>
+                            </ion-col>
+                        </ion-row>
+                         <ion-row>
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Product Type</ion-label>
+                                    <ion-input type="text" [disabled]="isDisabled" [(ngModel)]="item.productType"
+                                        formControlName="productType" placeholder=""></ion-input>
+                                </ion-item>
+                                <span class="text-danger" *ngIf="!updateForm.controls['productType'].valid && 
+                                updateForm.controls['ProductType']?.touched"> Father/Husband name is required
+                                    *</span>
+                            </ion-col>
+  
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Tenure</ion-label>
+                                    <ion-input type="number" [disabled]="isDisabled" [(ngModel)]="item.productTenure"
+                                        formControlName="productTenure" placeholder="" maxlength="2" (keydown)="validateNumber($event)"></ion-input>
+                                </ion-item>
+                                <span class="text-danger" *ngIf="!updateForm.controls['productTenure'].valid && 
+                                updateForm.controls['productTenure']?.touched"> Address is required *</span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Quantity</ion-label>
+                                    <ion-input type="number" [disabled]="isDisabled" [(ngModel)]="item.numberOfCustomers"
+                                        formControlName="numberOfCustomers" placeholder="" (keydown)="validateNumber($event)">
+                                    </ion-input>
+                                </ion-item>
+                                <span class="text-danger" *ngIf="!updateForm.controls['numberOfCustomers'].valid && 
+                                updateForm.controls['numberOfCustomers']?.touched"> Mobile number is required *</span>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item lines="none">
+                                    <ion-label position="stacked">Price</ion-label>
+                                    <ion-input type="number" [disabled]="isDisabled" [(ngModel)]="item.price"
+                                        formControlName="price" placeholder="" 
+                                        (keydown)="validateNumber($event)">
+                                    </ion-input>
+                                </ion-item>
+                                <span class="text-danger" *ngIf="!updateForm.controls['price'].valid && 
+                                updateForm.controls['price']?.touched"> Aadhar number is required *</span>
+                            </ion-col>
+                        </ion-row>
+                   
+                          <ion-row>
+                            <ion-col>
+                                <ion-button class="saveButton" color="tertiary" type="submit" [disabled]="isDisabled"
+                                    (click)="updateProduct()">Save</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </form>
+                </ion-grid>
+            </ng-template>
+        </ion-modal>
+    </div>
+
+
+</ion-content>
+<!-- <ion-content class="ion-padding">
   <ion-button style="float:right;" (click)="onClickAdd()">
     <ion-icon slot="icon-only" name="add"></ion-icon>
   </ion-button>
@@ -154,4 +285,4 @@
           </ng-template>
       </ion-modal>
   </div>
-</ion-content>
+</ion-content> -->

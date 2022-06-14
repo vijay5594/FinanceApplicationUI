@@ -40,6 +40,7 @@ export class Tab3Page {
 
   generateLoginForm = () => {
     this.loginForm = this.fb.group({
+      productId:[''],
       customerName: ['', Validators.required],
       guarantorName: ['', Validators.required],
       address: ['', Validators.required],

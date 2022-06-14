@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Payment Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <form (ngSubmit)="pay()" [formGroup]="paymentForm">
+      <ion-row>
+        <ion-col>
+          <ion-label>ProductCustomer Id</ion-label>
+          <ion-input type="text" formControlName="productCustomerId"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Payment Type</ion-label>
+          <ion-select placeholder="Payment Type" formControlName="paymentType">
+            <ion-select-option value="Cash">Cash</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Payment Date</ion-label>
+          <ion-input type="text" formControlName="paymentDate" disabled></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Amount</ion-label>
+          <ion-input type="text" formControlName="paidAmount"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Collected By</ion-label>
+          <ion-input type="text" formControlName="collectedBy"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="Submit">Submit </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

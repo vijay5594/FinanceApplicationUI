@@ -4,6 +4,14 @@
       <ion-row>
         <ion-col>
           <ion-item lines="none">
+            <ion-label position="stacked">Product Id</ion-label>
+            <ion-input type="text" formControlName="productId" placeholder=""></ion-input>
+          </ion-item>
+          <!-- <span class="text-danger" *ngIf="!loginForm.controls['customerName'].valid && 
+        loginForm.controls['customerName']?.touched"> Name is required *</span> -->
+        </ion-col>
+        <ion-col>
+          <ion-item lines="none">
             <ion-label position="stacked">Customer Name</ion-label>
             <ion-input type="text" formControlName="customerName" placeholder=""></ion-input>
           </ion-item>
