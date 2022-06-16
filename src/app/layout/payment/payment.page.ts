@@ -24,7 +24,10 @@ export class PaymentPage {
     this.generatePaymentForm();
 
   }
-
+  currentUser: string = localStorage.getItem('userName')
+  superUser: string = localStorage.getItem('isSuperUser')
+  role: string = localStorage.getItem('Role')
+  // productCustomerId :any=localStorage.getItem('productCustomerId')
   paymentForm: FormGroup
 
   generatePaymentForm = () => {
@@ -34,7 +37,7 @@ export class PaymentPage {
       paymentType: [''],
       paymentDate: [moment().format()],
       paidAmount: [''],
-      collectedBy: [''],
+      collectedBy:[this.currentUser],
 
     });
   }
